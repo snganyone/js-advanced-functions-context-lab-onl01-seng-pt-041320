@@ -61,9 +61,8 @@ let hoursWorkedOnDate = function(datestamp){
     const timeout = this.timeOutEvents.find(function(event){
         return event;
     });
-
-    const elapsed_time = (timeout.hour - timein.hour) / 100;
-    return elapsed_time;
+    
+    return ((timeout.hour - timein.hour) / 100);
 }
 
 let wagesEarnedOnDate = function(datestamp){
