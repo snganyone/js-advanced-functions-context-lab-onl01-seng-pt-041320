@@ -9,6 +9,18 @@
  for you to use if you need it!
  */
 
+let createEmployeeRecord = function(src){
+    let emp_record = {};
+    emp_record.firstName = src[0];
+    emp_record.familyName = src[1];
+    emp_record.title = src[2];
+    emp_record.payPerHour = src[3];
+    emp_record.timeInEvents = [];
+    emp_record.timeOutEvents = [];
+    return emp_record;
+}
+
+
 let allWagesFor = function () {
     let eligibleDates = this.timeInEvents.map(function (e) {
         return e.date
