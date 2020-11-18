@@ -66,6 +66,13 @@ let hoursWorkedOnDate = function(datestamp){
     return elapsed_time;
 }
 
+let wagesEarnedOnDate = function(datestamp){
+    const hours = hoursWorkedOnDate(this, datestamp);
+
+    const wages = this.payPerHour * hours;
+    return wages;
+}
+
 let allWagesFor = function () {
     let eligibleDates = this.timeInEvents.map(function (e) {
         return e.date
