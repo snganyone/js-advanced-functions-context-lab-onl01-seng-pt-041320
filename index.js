@@ -32,6 +32,7 @@ let createTimeInEvent = function(datestamp){
     obj.type = "TimeIn";
     obj.hour = parseInt(hour, 10);
     obj.date = date;
+    return obj;
 }
 
 let allWagesFor = function () {
