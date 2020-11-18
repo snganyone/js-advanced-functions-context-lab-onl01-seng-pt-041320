@@ -78,10 +78,13 @@ let allWagesFor = function () {
     })
 
     let payable = eligibleDates.reduce(function (memo, d) {
-        return memo + wagesEarnedOnDate.call(this, d)
+        // console.log("Memo:", memo);
+        // console.log("Wages:", wagesEarnedOnDate.call(this, d));
+        const wages = wagesEarnedOnDate.call(this, d);
+        return wages + memo;
     }.bind(this), 0) // <== Hm, why did we need to add bind() there? We'll discuss soon!
 
-    return payable
+    return payable;
 }
 
 let findEmployeeByFirstName = function(collection, firstname){
@@ -89,4 +92,14 @@ let findEmployeeByFirstName = function(collection, firstname){
         return emp.firstName === firstname;
     });
     return name;
+}
+
+let calculatePayroll = function(employees){
+    let counter = 0;
+    const payroll = employees.reduce(function(acc, val){
+        let wages = allWagesFor(this, val);
+        counter += wages;
+        return counter;;
+    })
+    return payroll;
 }
