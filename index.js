@@ -32,7 +32,23 @@ let createTimeInEvent = function(datestamp){
     obj.type = "TimeIn";
     obj.hour = parseInt(hour, 10);
     obj.date = date;
-    return obj;
+
+    this.timeInEvents.push(obj);
+
+    return this;
+}
+
+let createTimeOutEvent = function(datestamp){
+    let [date, hour] = datestamp.split(' ');
+    let obj = {};
+
+    obj.type = "TimeOut";
+    obj.hour = parseInt(hour, 10);
+    obj.date = date;
+
+    this.timeOutEvents.push(obj);
+
+    return this;
 }
 
 let allWagesFor = function () {
