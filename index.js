@@ -21,8 +21,19 @@ let createEmployeeRecord = function(src){
 }
 
 let createEmployeeRecords = function(src){
-    const emp_record = src.apply(createEmployeeRecord(src));
+    const emp_record = src.map(x => createEmployeeRecord(x));
     return emp_record;
+}
+
+let createTimeInEvent = function(datestamp){
+let [date, hour] = datestamp.split(' ');
+let obj = {};
+
+obj.type = "TimeIn";
+obj.hour = parseInt(hour, 10);
+obj.date = date;
+obj.push.apply(obj);
+return obj;
 }
 
 let allWagesFor = function () {
