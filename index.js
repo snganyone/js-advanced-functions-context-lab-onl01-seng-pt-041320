@@ -26,14 +26,12 @@ let createEmployeeRecords = function(src){
 }
 
 let createTimeInEvent = function(datestamp){
-let [date, hour] = datestamp.split(' ');
-let obj = {};
+    let [date, hour] = datestamp.split(' ');
+    let obj = {};
 
-obj.type = "TimeIn";
-obj.hour = parseInt(hour, 10);
-obj.date = date;
-obj.push.apply(obj);
-return obj;
+    obj.type = "TimeIn";
+    obj.hour = parseInt(hour, 10);
+    obj.date = date;
 }
 
 let allWagesFor = function () {
@@ -46,4 +44,11 @@ let allWagesFor = function () {
     }.bind(this), 0) // <== Hm, why did we need to add bind() there? We'll discuss soon!
 
     return payable
+}
+
+let findEmployeeByFirstName = function(collection, firstname){
+    const name = collection.find(function(emp){
+        return emp.firstName === firstname;
+    });
+    return name;
 }
