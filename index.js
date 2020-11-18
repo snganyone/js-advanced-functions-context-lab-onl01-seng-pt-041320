@@ -20,6 +20,10 @@ let createEmployeeRecord = function(src){
     return emp_record;
 }
 
+let createEmployeeRecords = function(src){
+    const emp_record = src.apply(createEmployeeRecord(src));
+    return emp_record;
+}
 
 let allWagesFor = function () {
     let eligibleDates = this.timeInEvents.map(function (e) {
