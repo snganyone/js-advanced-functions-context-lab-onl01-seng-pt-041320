@@ -66,9 +66,9 @@ let hoursWorkedOnDate = function(datestamp){
 }
 
 let wagesEarnedOnDate = function(datestamp){
-    const hours = hoursWorkedOnDate(datestamp);
-
+    const hours = hoursWorkedOnDate.call(this, datestamp);
     const wages = this.payPerHour * hours;
+    
     return wages;
 }
 
