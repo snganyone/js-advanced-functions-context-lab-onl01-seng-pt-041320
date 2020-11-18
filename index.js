@@ -38,12 +38,6 @@ let createTimeInEvent = function(datestamp){
     return this;
 }
 
-let hoursWorkedOnDate = function(datestamp){
-    const timein = this.timeInEvents.find(function(event){
-        return event.date === date;
-    });
-    return timein;
-}
 
 let createTimeOutEvent = function(datestamp){
     let [date, hour] = datestamp.split(' ');
@@ -56,6 +50,20 @@ let createTimeOutEvent = function(datestamp){
     this.timeOutEvents.push(obj);
 
     return this;
+}
+
+
+let hoursWorkedOnDate = function(datestamp){
+    const timein = this.timeInEvents.find(function(event){
+        return event;
+    });
+
+    const timeout = this.timeOutEvents.find(function(event){
+        return event;
+    });
+
+    const elapsed_time = (timeout.hour - timein.hour) / 100;
+    return elapsed_time;
 }
 
 let allWagesFor = function () {
