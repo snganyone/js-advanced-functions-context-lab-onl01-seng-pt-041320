@@ -55,20 +55,19 @@ let createTimeOutEvent = function(datestamp){
 
 let hoursWorkedOnDate = function(datestamp){
     const timein = this.timeInEvents.find(function(event){
-        return event;
+        return event.date === datestamp;
     });
 
     const timeout = this.timeOutEvents.find(function(event){
-        return event;
+        return event.date === datestamp;
     });
-
     return ((timeout.hour - timein.hour) / 100);
 }
 
 let wagesEarnedOnDate = function(datestamp){
     const hours = hoursWorkedOnDate.call(this, datestamp);
     const wages = this.payPerHour * hours;
-    
+
     return wages;
 }
 
@@ -78,10 +77,7 @@ let allWagesFor = function () {
     })
 
     let payable = eligibleDates.reduce(function (memo, d) {
-        // console.log("Memo:", memo);
-        // console.log("Wages:", wagesEarnedOnDate.call(this, d));
-        const wages = wagesEarnedOnDate.call(this, d);
-        return wages + memo;
+        return memo + wagesEarnedOnDate.call(this, d);
     }.bind(this), 0) // <== Hm, why did we need to add bind() there? We'll discuss soon!
 
     return payable;
@@ -97,9 +93,9 @@ let findEmployeeByFirstName = function(collection, firstname){
 let calculatePayroll = function(employees){
     let counter = 0;
     const payroll = employees.reduce(function(acc, val){
-        let wages = allWagesFor(this, val);
+        let wages = allWagesFor.call(val);
         counter += wages;
         return counter;;
-    })
+    }, 0)
     return payroll;
 }
