@@ -38,6 +38,13 @@ let createTimeInEvent = function(datestamp){
     return this;
 }
 
+let hoursWorkedOnDate = function(datestamp){
+    const timein = this.timeInEvents.find(function(event){
+        return event.date === date;
+    });
+    return timein;
+}
+
 let createTimeOutEvent = function(datestamp){
     let [date, hour] = datestamp.split(' ');
     let obj = {};
